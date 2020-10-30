@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.ui.BozkaketaAukeratuKud">
+   <children>
+      <ImageView fx:id="irudiBalioa" fitHeight="150.0" fitWidth="347.0" layoutX="92.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="okBotoia" layoutX="234.0" layoutY="432.0" mnemonicParsing="false" onAction="#onClick" prefHeight="26.0" prefWidth="54.0" text="OK" />
+      <Label layoutX="137.0" layoutY="22.0" text="Informazioaren Eguneraketa">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxa" layoutX="92.0" layoutY="226.0" prefHeight="26.0" prefWidth="347.0" />
+   </children>
+</AnchorPane>
