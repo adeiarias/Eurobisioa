@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="498.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.ui.BozkaketaKaukotuKud">
+   <children>
+      <TableView fx:id="taula" layoutX="27.0" layoutY="125.0" prefHeight="300.0" prefWidth="659.0">
+        <columns>
+          <TableColumn fx:id="argazkiKol" prefWidth="75.0" />
+          <TableColumn fx:id="herrialdeKol" prefWidth="145.0" text="Herrialdea" />
+            <TableColumn fx:id="artistaKol" prefWidth="131.0" text="Artista" />
+            <TableColumn fx:id="abestiKol" prefWidth="149.0" text="Abestia" />
+            <TableColumn fx:id="puntuKol" prefWidth="157.0" text="Puntuak" />
+        </columns>
+      </TableView>
+      <Button fx:id="bozkaketaButton" layoutX="292.0" layoutY="444.0" mnemonicParsing="false" onAction="#onClick" text="Bozkaketa Gorde" />
+      <ImageView fx:id="eurobisioArg" fitHeight="93.0" fitWidth="192.0" layoutX="434.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="HerrialdeArg" fitHeight="93.0" fitWidth="157.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="herriLabel" alignment="TOP_LEFT" layoutX="209.0" layoutY="26.0" prefHeight="34.0" prefWidth="192.0" text="Label" />
+      <Label fx:id="herriLabel1" alignment="TOP_LEFT" layoutX="209.0" layoutY="60.0" prefHeight="34.0" prefWidth="192.0" text="Label" />
+   </children>
+</AnchorPane>

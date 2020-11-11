@@ -37,7 +37,7 @@ public class HasieraketaKud {
 
   @FXML
   void initialize() {
-    Image logo = new Image("/eurobisioa_logo.png");
+    Image logo = new Image("/images/eurobisioa_logo.png");
     eurobisioLogo.setImage(logo);
   }
 }

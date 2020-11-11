@@ -1,8 +1,6 @@
 package ehu.isad;
 
-import ehu.isad.controller.ui.BozkaketaAukeratuKud;
-import ehu.isad.controller.ui.HasieraketaKud;
-import ehu.isad.controller.ui.HerriInfoKud;
+import ehu.isad.controller.ui.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,14 +14,18 @@ public class Main extends Application {
   private Parent hasieraUI;
   private Parent bozkaketaUI;
   private Parent herriInfoUI;
+  private Parent bozkatuUI;
+  private Parent topUI;
 
   private Stage stage;
 
   private HasieraketaKud hasieraketaKud;
   private BozkaketaAukeratuKud bozkaketaKud;
   private HerriInfoKud herrinfokud;
+  private BozkaketaKaukotuKud bozkatuKud;
+  private Top3Kud topKud;
 
-  private Scene hasieraketa,bozkaketa,herriInfo;
+  private Scene hasieraketa,bozkaketa,herriInfo,bozkatu,top;
 
 
   @Override
@@ -57,6 +59,18 @@ public class Main extends Application {
     herrinfokud.setMainApp(this);
     herriInfo = new Scene(herriInfoUI);
 
+    FXMLLoader loaderBozkatuInfo = new FXMLLoader(getClass().getResource("/BozkaketaKaukotu.fxml"));
+    bozkatuUI = (Parent) loaderBozkatuInfo.load();
+    bozkatuKud = loaderBozkatuInfo.getController();
+    bozkatuKud.setMainApp(this);
+    bozkatu = new Scene(bozkatuUI);
+
+    FXMLLoader loaderTop = new FXMLLoader(getClass().getResource("/top3.fxml"));
+    topUI = (Parent) loaderTop.load();
+    topKud = loaderTop.getController();
+    topKud.setMainApp(this);
+    top = new Scene(topUI);
+
   }
 
 
@@ -71,8 +85,21 @@ public class Main extends Application {
   }
 
   public void herriInfoIkusi(String izena){
-    herrinfokud.labelakEguneratu(izena);
+    herrinfokud.labelakEtaIrudiEguneratu(izena);
     stage.setScene(herriInfo);
+    stage.show();
+  }
+
+  public void bozkatu(String izena){
+    bozkatuKud.herriIrudiaJarri(izena);
+    stage.setScene(bozkatu);
+    stage.show();
+    bozkatuKud.ordezkaritzaKargatu(izena);
+
+  }
+
+  public void top3Ikusi(){
+    stage.setScene(top);
     stage.show();
   }
 

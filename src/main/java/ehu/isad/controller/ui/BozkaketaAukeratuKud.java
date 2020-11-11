@@ -26,6 +26,7 @@ public class BozkaketaAukeratuKud {
   @FXML
   private ImageView irudiBalioa;
 
+
   @FXML
   private Button okBotoia;
 
@@ -39,7 +40,7 @@ public class BozkaketaAukeratuKud {
     if(EurobisioaDBKud.getInstantzia().puntuGuztiakEman(herrialdea.getIzena())){//10 puntuak eman dira
       main.herriInfoIkusi(herrialdea.getIzena());
     }else{
-      //Bozkaketa scene-ra goaz
+      main.bozkatu(herrialdea.getIzena());
     }
   }
 
@@ -55,7 +56,7 @@ public class BozkaketaAukeratuKud {
 
   @FXML
   void initialize() {
-    Image logoa = new Image("/eurobisioa_logo.png");
+    Image logoa = new Image("/images/eurobisioa_logo.png");
     irudiBalioa.setImage(logoa);
   }
 }

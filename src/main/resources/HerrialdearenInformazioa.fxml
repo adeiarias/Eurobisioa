@@ -7,16 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="297.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.isad.controller.ui.HerriInfoKud">
    <children>
-      <Label fx:id="lblInfo" layoutX="204.0" layoutY="14.0" text="inguruko informazioa">
+      <Label fx:id="lblInfo" layoutX="165.0" layoutY="14.0" text="inguruko informazioa">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <ImageView fx:id="logoIrudia" fitHeight="87.0" fitWidth="200.0" layoutX="379.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="lblErdikoa" layoutX="153.0" layoutY="149.0" prefHeight="55.0" prefWidth="294.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="lblErdikoa" alignment="TOP_LEFT" layoutX="220.0" layoutY="149.0" prefHeight="87.0" prefWidth="366.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -26,5 +25,6 @@
           <Button fx:id="botoia" mnemonicParsing="false" onAction="#onClick" text="Button" />
         </buttons>
       </ButtonBar>
+      <ImageView fx:id="herrialdeirudi" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

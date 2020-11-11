@@ -34,13 +34,18 @@ public class HerriInfoKud {
         private Button botoia;
 
         @FXML
+        private ImageView herrialdeirudi;
+
+        @FXML
         void onClick(ActionEvent event) {
                 main.bozkaketaErakutsi();
         }
 
-        public void labelakEguneratu(String izena){
+        public void labelakEtaIrudiEguneratu(String izena){
                 lblInfo.setText(izena+"ren inguruko informazioa");
                 lblErdikoa.setText(izena+"k jada banatu ditu bere puntuak");
+                Image herri = new Image("/"+izena.toLowerCase()+".png");
+                herrialdeirudi.setImage(herri);
         }
 
         public void setMainApp(Main main) {
@@ -49,7 +54,7 @@ public class HerriInfoKud {
 
         @FXML
         void initialize() {
-                Image logoa = new Image("/eurobisioa_logo.png");
+                Image logoa = new Image("/images/eurobisioa_logo.png");
                 logoIrudia.setImage(logoa);
         }
 }
