@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BozkaketaAukeratuKud {
+public class taulaErakutsi {
 
   private Main main;
   @FXML

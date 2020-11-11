@@ -10,19 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 public class BozkaketaKaukotuKud {
-
+    int p;
+    String nork;
     Main main;
     private ObservableList<Ordezkapena> l;
     @FXML
@@ -64,6 +62,11 @@ public class BozkaketaKaukotuKud {
     @FXML
     private Label herriLabel1;
 
+    public void setNork(String h){
+        nork = h;
+        p = 0; //hasieran herrialde bati emandako puntuak 0 dira, gero eguenratuko dira
+    }
+
     public void setMainApp(Main main) {
         this.main = main;
     }
@@ -82,30 +85,63 @@ public class BozkaketaKaukotuKud {
 
     public void ordezkaritzaKargatu(String herrialdea){
         l = FXCollections. observableArrayList(EurobisioaDBKud.getInstantzia().ordezkapenakLortu(herrialdea));
+        System.out.println(l.get(4));
         taula.setItems(l);
+
     }
 
     @FXML
     void onClick(ActionEvent event) {
-        main.top3Ikusi();
+        if(p==5){
+            main.top3Ikusi();
+        }else{
+            System.out.println("Ez dituzu oraindik 5 puntuak eman");
+        }
+
     }
 
     @FXML
     void initialize() {
         eurobisioArg.setImage(new Image("/images/eurobisioa_logo.png"));
+
         taula.setEditable(true);
+        //make sure the property value factory should be exactly same as the e.g getStudentId from your model class
         herrialdeKol.setCellValueFactory(new PropertyValueFactory<>("Herrialdea"));
         artistaKol.setCellValueFactory(new PropertyValueFactory<>("Artista"));
         abestiKol.setCellValueFactory(new PropertyValueFactory<>("Abestia"));
-        puntuKol.setCellValueFactory(new PropertyValueFactory<>("Puntuak"));
-        argazkiKol.setCellValueFactory(new PropertyValueFactory<Ordezkapena, Image>("bandera"));
+       // puntuKol.setCellValueFactory(new PropertyValueFactory<>("Puntuak"));
 
-        puntuKol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-        puntuKol.setOnEditCommit(balioa -> {
 
+       puntuKol.setOnEditCommit(
+                t -> {
+                    t.getTableView().getItems().get(t.getTablePosition().getRow())
+                            .setPuntuak(t.getNewValue());
+                    p += t.getNewValue();
+                    if(p<=5){
+                        String nori = t.getTableView().getItems().get(t.getTablePosition().getRow()).getHerrialdea();
+                        EurobisioaDBKud.getInstantzia().ordezPuntuak(t.getNewValue(),nori);
+                        EurobisioaDBKud.getInstantzia().bozkatu(nork,nori,t.getNewValue());
+                    }
+                }
+        );
+
+        //argazkiKol.setCellValueFactory(new PropertyValueFactory<>("banderaArg"));
+
+        argazkiKol.setCellFactory(p -> new TableCell<>() {
+            public void updateItem(Image image, boolean empty) {
+                if (image != null && !empty){
+                    final ImageView imageview = new ImageView();
+                    imageview.setFitHeight(25);
+                    imageview.setFitWidth(40);
+                    imageview.setImage(image);
+                    setGraphic(imageview);
+                    setAlignment(Pos.CENTER);
+                }else{
+                    setGraphic(null);
+                    setText(null);
+                }
+            };
         });
-
-
     }
 }

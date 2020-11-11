@@ -5,6 +5,7 @@ import ehu.isad.model.Ordezkapena;
 import ehu.isad.model.Top3;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class EurobisioaDBKud {
 
     ObservableList<Herrialdea> emaitza = FXCollections.observableArrayList();
     DBKudeatzaile dbkud = DBKudeatzaile.getInstantzia();
-    String query = "select * from Herrialde";
+    String query = "select * from Herrialde"; //select * from Herrialde where urtea=strftime('%Y','now');
     ResultSet rs = dbkud.execSQL(query);
 
     try {
@@ -70,7 +71,8 @@ public class EurobisioaDBKud {
         String artista = rs.getString("artista");
         String bandera = rs.getString("bandera");
         int puntuak = rs.getInt("puntuak");
-        emaitza.add(new Ordezkapena(artista,abestia,herrialdea,puntuak));
+        Image im = new Image("/images/"+bandera+".png");
+        emaitza.add(new Ordezkapena(artista,abestia,herrialdea,puntuak,im));
       }
     }catch (SQLException e){
       System.err.println(e);
@@ -97,6 +99,19 @@ public class EurobisioaDBKud {
     return array;
   }
 
+  public void bozkatu(String nork,String nori,int p){
+    String query = "insert into Bozkaketa values('"+nori+"','"+nork+"',select(strftime('%Y','now')),"+p+")";
+    DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+    dbKudeatzaile.execSQL(query);
+  }
+
+  public void ordezPuntuak(int p,String herri){
+      String query = "update ordezkaritza set puntuak=puntuak+"+p+" where " +
+              "herrialdea='"+herri+"'";
+
+      DBKudeatzaile dbKudeatzaile = DBKudeatzaile.getInstantzia();
+      dbKudeatzaile.execSQL(query);
+  }
 
 
 }

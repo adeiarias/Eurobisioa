@@ -20,7 +20,7 @@ public class Main extends Application {
   private Stage stage;
 
   private HasieraketaKud hasieraketaKud;
-  private BozkaketaAukeratuKud bozkaketaKud;
+  private taulaErakutsi bozkaketaKud;
   private HerriInfoKud herrinfokud;
   private BozkaketaKaukotuKud bozkatuKud;
   private Top3Kud topKud;
@@ -47,7 +47,7 @@ public class Main extends Application {
     hasieraketaKud.setMainApp(this);
     hasieraketa = new Scene(hasieraUI);
 
-    FXMLLoader loaderBozkaketa = new FXMLLoader(getClass().getResource("/BozkaketaAukeratu.fxml"));
+    FXMLLoader loaderBozkaketa = new FXMLLoader(getClass().getResource("/taulaErakuts.fxml"));
     bozkaketaUI = (Parent) loaderBozkaketa.load();
     bozkaketaKud = loaderBozkaketa.getController();
     bozkaketaKud.setMainApp(this);
@@ -92,6 +92,7 @@ public class Main extends Application {
 
   public void bozkatu(String izena){
     bozkatuKud.herriIrudiaJarri(izena);
+    bozkatuKud.setNork(izena);
     stage.setScene(bozkatu);
     stage.show();
     bozkatuKud.ordezkaritzaKargatu(izena);

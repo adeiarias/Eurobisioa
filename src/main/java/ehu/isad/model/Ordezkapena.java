@@ -1,17 +1,21 @@
 package ehu.isad.model;
 
+import javafx.scene.image.Image;
+
 public class Ordezkapena {
 
     private String artista;
     private String abestia;
     private String herrialdea;
-    private int puntuak;
+    private Integer puntuak;
+    private Image bandera;
 
-    public Ordezkapena(String art, String abes, String herr, int p){
+    public Ordezkapena(String art, String abes, String herr, Integer p, Image ban){
         artista = art;
         abestia = abes;
         herrialdea = herr;
         puntuak = p;
+        bandera = ban;
     }
 
     public String getArtista() {
@@ -24,5 +28,11 @@ public class Ordezkapena {
 
     public String getHerrialdea() {
         return herrialdea;
+    }
+
+    public Integer getPuntuaK(){ return puntuak; }
+
+    public void setPuntuak(Integer p) {
+        puntuak = p;
     }
 }
